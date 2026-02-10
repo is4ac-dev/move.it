@@ -1,11 +1,28 @@
+/* GLOBAL */
 .card-container {
   background-color: var(--white);
   border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
 }
 
 .text-content {
   font: var(--sub-title);
   color: var(--text);
+  
+  width: 70%;
+  text-align: center;
+
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4rem;
+
 }
 
 .message-text {
