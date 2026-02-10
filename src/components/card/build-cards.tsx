@@ -1,6 +1,6 @@
 import iconLevel from "../../assets/level-up.svg"
 import iconHalter from "../../assets/halter.svg"
-import iconEye from "../../assets/eye.svg"
+// import iconEye from "../../assets/eye.svg"
 
 export function BuildDefault(){
   return(
