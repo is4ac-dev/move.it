@@ -17,17 +17,33 @@
   }
 }
 
+.button-container:has(.start-btn):hover{
+  background-color: var(--blue02);
+}
+
 /* SE FOR BOTÃO DE CANCELAR, APLICA ESTILIZAÇÃO */
 .button-container:has(.cancel-btn){
-  background-color: var(--red);
+  background-color: var(--white);
 
   span {
     font: var(--btn-text);
-    color: var(--white);
+    color: var(--text);
   }
 
   svg {
     width: 14px;
+  }
+}
+
+.button-container:has(.cancel-btn):hover{
+  background-color: var(--red);
+
+  span {
+    color: var(--white);
+  }
+  
+  svg path {
+    fill: var(--white);
   }
 }
 
