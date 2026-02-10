@@ -1,0 +1,43 @@
+.timer-container {
+  display: flex;
+  align-items: center;
+
+  font: var(--timer);
+  color: var(--titles);
+
+  margin-bottom: 2rem;
+}
+
+.number-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  
+  background-color: var(--white);
+  border-radius: 0.5rem;
+
+  text-align: center;
+
+  padding: 0;
+
+  overflow: hidden;
+}
+
+.number-box span {
+  flex: 1;
+
+  padding: 1rem 0;
+}
+
+.divisor {
+  width: 2px;
+  background-color: #F0F1F3;
+
+  align-self: stretch;
+}
+
+.separator {
+  font-size: 6rem;
+  margin: 0 0.5rem;
+}
