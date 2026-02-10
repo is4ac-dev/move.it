@@ -22,8 +22,10 @@
   --username: 600 1.5rem/100% "Inter", sans-serif;
   --level: 400 1rem/100% "Inter", sans-serif;
   --challenges: 500 1.125rem/1.5rem "Inter", sans-serif;
+  --btn-text: 600 1.125rem/100% "Inter", sans-serif;
 }
 
+/* RESET NAS CONFIGS PADRÕES DE NAVEGADORES */
 * {
   margin: 0;
   padding: 0;
@@ -42,7 +44,7 @@ body {
   margin: 2rem auto 0;
   width: 60%;
 
-  gap: 6rem;
+  gap: 4rem;
   
 }
 
