@@ -1,0 +1,14 @@
+.card-container {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+}
+
+.text-content {
+  font: var(--sub-title);
+  color: var(--text);
+}
+
+.message-text {
+  font: var(--explain-text);
+  color: var(--text);
+}
