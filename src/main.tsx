@@ -3,12 +3,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { App } from './App.tsx'
 
-// Importando CSS
+// Importando CSS Global
 import "./styles/global.css"
 
 // Criação da estrutura HTML
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+      <App />
   </StrictMode>,
 )
