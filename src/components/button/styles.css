@@ -1,0 +1,41 @@
+.start-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: var(--blue01);
+
+  padding: 1.5rem 0;
+
+  border: none;
+  border-radius: 1rem;
+}
+
+.start-btn span {
+  font: var(--btn-text);
+  color: var(--white);
+}
+
+.cancel-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: var(--red);
+
+  padding: 1.5rem 0;
+
+  border: none;
+  border-radius: 1rem;
+
+  gap: 0.5rem;
+}
+
+.cancel-btn span {
+  font: var(--btn-text);
+  color: var(--white);
+}
+
+.cancel-btn svg {
+  width: 14px;
+}
