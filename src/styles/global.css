@@ -19,6 +19,9 @@
   --sub-title: 500 1.5rem/2.125rem "Inter", sans-serif;
   --explain-text: 400 1rem/1.625rem "Inter", sans-serif;
   --reward-xp: 600 1.250rem/1.875rem "Inter", sans-serif;
+  --username: 600 1.5rem/100% "Inter", sans-serif;
+  --level: 400 1rem/100% "Inter", sans-serif;
+  --challenges: 500 1.125rem/1.5rem "Inter", sans-serif;
 }
 
 * {
@@ -27,11 +30,32 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--backgr);
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   margin: 2rem auto 0;
-  width: 70%;
+  width: 60%;
+
+  gap: 6rem;
+  
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  width: 100%;
+
+  gap: 6rem;
+}
+
+.client-section {
+  display: flex;
+  flex-direction: column;
 }
