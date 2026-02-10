@@ -1,0 +1,35 @@
+.profile-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1.5rem;
+}
+
+.profile-avatar {
+  width: 5rem;
+  height: 5rem;
+
+  border-radius: 50%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.profile-name {
+  font: var(--username);
+  color: var(--titles);
+}
+
+.profile-level {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+  font: var(--level);
+  color: var(--text);
+}
