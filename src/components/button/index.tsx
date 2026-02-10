@@ -5,6 +5,8 @@ import { BuildStartBtn, BuildCancelBtn } from "./build-btn"
 export function Button(){
 
   return(
-    <BuildCancelBtn/>
+    <div className="button-container">
+      { false ? <BuildCancelBtn/> : <BuildStartBtn/>}
+    </div>
   )
 }
