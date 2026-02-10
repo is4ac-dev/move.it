@@ -1,0 +1,15 @@
+.challenges-container {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding-bottom: 1rem;
+  border-bottom: solid 1px #D7D8DA;
+
+  margin: 3rem 0;
+}
+
+.challenges-container span {
+  font: var(--challenges);
+  color: var(--text);
+}
