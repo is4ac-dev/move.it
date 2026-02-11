@@ -2,7 +2,7 @@ import iconLevel from "../../assets/level-up.svg"
 import iconHalter from "../../assets/halter.svg"
 
 import { useContext } from "react"
-import { PomoContext } from "../../contexts/PomoContext.ts"
+import { PomoContext } from "../../contexts/PomoContext"
 
 export function BuildDefault(){
   return(

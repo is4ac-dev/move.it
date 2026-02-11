@@ -1,7 +1,7 @@
 import "./styles.css"
 
 import { useContext, type ReactNode } from "react"
-import { PomoContext } from "../../contexts/PomoContext.ts"
+import { PomoContext } from "../../contexts/PomoContext"
 
 import { BuildStartBtn, BuildCancelBtn, BuildFinishedBtn } from "./build-btn"
 

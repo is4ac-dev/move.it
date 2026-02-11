@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 
-import { PomoContext } from "../../contexts/PomoContext.ts"
+import { PomoContext } from "../../contexts/PomoContext"
 
 export function BuildDefaultTimer(){
   return (

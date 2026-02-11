@@ -3,7 +3,7 @@ import "./styles.css"
 import { useContext, type ReactNode } from "react"
 import { BuildDefaultTimer, BuildFlexTimer, BuildZeroTimer } from "./buildTimer.tsx"
 
-import { PomoContext } from "../../contexts/PomoContext.ts"
+import { PomoContext } from "../../contexts/PomoContext"
 
 export function Timer(){
 

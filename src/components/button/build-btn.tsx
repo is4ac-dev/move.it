@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { PomoContext } from "../../contexts/PomoContext.ts"
+import { PomoContext } from "../../contexts/PomoContext"
 
 
 export function BuildStartBtn(){

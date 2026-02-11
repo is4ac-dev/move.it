@@ -4,7 +4,7 @@ import { useContext } from "react"
 
 import { BuildDefault, BuildExercise } from "./build-cards.tsx"
 
-import { PomoContext } from "../../contexts/PomoContext.ts"
+import { PomoContext } from "../../contexts/PomoContext"
 
 export function Card(){
 
