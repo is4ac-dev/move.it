@@ -1,15 +1,27 @@
 import "./styles.css"
 
-import { useContext } from "react"
-import { BuildDefaultTimer, BuildFlexTimer } from "./buildTimer.tsx"
+import { useContext, type ReactNode } from "react"
+import { BuildDefaultTimer, BuildFlexTimer, BuildZeroTimer } from "./buildTimer.tsx"
 
 import { PomoContext } from "../../contexts/PomoContext.ts"
 
 export function Timer(){
 
-  const { isWorking } = useContext(PomoContext)
+  const { isWorking, isFinished } = useContext(PomoContext)
+  
+  let timerContent: ReactNode
+
+  if (isFinished){
+    timerContent = <BuildZeroTimer/>
+  } else if(isWorking){
+    timerContent = <BuildFlexTimer/>
+  } else{
+    timerContent = <BuildDefaultTimer/>
+  }
 
   return (
-    isWorking ? <BuildFlexTimer/> : <BuildDefaultTimer/>
+    <>
+      {timerContent}
+    </>
   )
 }
