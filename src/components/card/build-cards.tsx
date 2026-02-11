@@ -1,6 +1,8 @@
 import iconLevel from "../../assets/level-up.svg"
 import iconHalter from "../../assets/halter.svg"
-// import iconEye from "../../assets/eye.svg"
+
+import { useContext } from "react"
+import { PomoContext } from "../../contexts/PomoContext.ts"
 
 export function BuildDefault(){
   return(
@@ -15,6 +17,14 @@ export function BuildDefault(){
 }
 
 export function BuildExercise(){
+
+  const {isFinished, setIsFinished} = useContext(PomoContext)
+
+  function buttonResponse(){
+
+    setIsFinished(!isFinished)
+  }
+
   return(
     <div className="card-exercise">
       <span>Ganhe 400 xp</span>
@@ -25,8 +35,8 @@ export function BuildExercise(){
         <p>É agora Isaac, bora lá meu parça. Caminhe por 3 minutos e estique suas pernas para você ficar saudável.</p>
       </div>
       <div className="answer-button">
-        <button className="falid-btn btn-box">Não Completado</button>
-        <button className="sucess-btn btn-box">Completado</button>
+        <button className="falid-btn btn-box" onClick={() => buttonResponse()}>Não Completado</button>
+        <button className="sucess-btn btn-box" onClick={() => buttonResponse()}>Completado</button>
       </div>
     </div>
   )
