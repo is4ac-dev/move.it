@@ -15,5 +15,4 @@ export async function getUserData(){
     console.log(error)
     alert("Erro ao acessar banco de dados!")
   }
-
 }
