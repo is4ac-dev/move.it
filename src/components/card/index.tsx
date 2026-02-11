@@ -1,12 +1,18 @@
 import "./styles.css"
 
-import { BuildDefault } from "./build-cards.tsx"
+import { useContext } from "react"
+
+import { BuildDefault, BuildExercise } from "./build-cards.tsx"
+
+import { PomoContext } from "../../contexts/PomoContext.ts"
 
 export function Card(){
 
+  const { isFinished } = useContext(PomoContext)
+
   return(
     <aside className="card-container">
-      <BuildDefault/>
+      {isFinished ? <BuildExercise/> : <BuildDefault/>}
     </aside>
   )
 }
