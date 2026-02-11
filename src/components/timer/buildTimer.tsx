@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react"
+
+import { PomoContext } from "../../contexts/PomoContext.ts"
 
 export function BuildDefaultTimer(){
   return (
@@ -20,11 +22,18 @@ export function BuildDefaultTimer(){
 
 export function BuildFlexTimer(){
   
-  const [timer, setTimer] = useState(1500)
+  const [timer, setTimer] = useState(5)
+
+  const {isWorking, setIsWorking, isFinished, setIsFinished} = useContext(PomoContext)
 
   useEffect(() => {
 
-    if (timer <= 0) return;
+    if (timer <= 0){
+      return(
+        setIsWorking(!isWorking),
+        setIsFinished(!isFinished)
+      )
+    };
 
     const intervalId = setInterval(() => {
 
