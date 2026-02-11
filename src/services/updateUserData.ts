@@ -3,6 +3,7 @@ import { apiConfig } from "./api.config.ts"
 export interface UserData {
   level: number,
   xpCount: number,
+  nextLevelXp: number,
   completeChallenges: number
 }
 
