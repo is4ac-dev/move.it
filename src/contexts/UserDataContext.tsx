@@ -13,16 +13,14 @@ import type { UserData as UserDataProps } from "../services/updateUserData"
 export interface UserDataContextData extends UserDataProps {
 
   // SINCRONIZADOS COM API
-  // Método para incrementar xp do User
   addXp: () => Promise<void>,
-
-  // Método para incrementar o contador de challenges
   completeNewChallenge: () => Promise<void>,
+  loginUser: () => void,
 
   // NÃO NECESSITAM DA API
-  isLevelUpCardOpen: boolean,
   closeLevelUpCard: () => void,
-
+  isLevelUpCardOpen: boolean,
+  isLoaded: boolean,
 }
 
 // Criando contexto do UserData de acordo com a tipagem definida e herdada
@@ -34,12 +32,13 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
 
   //Definindo estados iniciais e suas funções de alteração
 
-  // API: 
+  // API:
   const [level, setLevel] = useState(1)
   const [xpCount, setXpCount] = useState(0)
   const [nextLevelXp, setNextLevelXp] = useState(600)
   const [prevLevelXp, setPrevLevelXp] = useState(0)
   const [completeChallenges, setCompleteChallenges] = useState(0)
+  const [isLoggedIn, setLoggedIn] = useState(false)
 
   // LOCAL:
   const [isLevelUpCardOpen, setIsLevelUpCardOpen] = useState(false)
@@ -121,12 +120,13 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
   const addXp = async () => setXpCount(prevXpCount => prevXpCount + 400)
   const completeNewChallenge = async () => setCompleteChallenges(prevChallenge => prevChallenge + 1)
   const closeLevelUpCard = () => setIsLevelUpCardOpen(false)
+  const loginUser = () => setLoggedIn(true)
 
   // Retornando componente de contexto
   return (
     <UserDataContext.Provider value={{
       level, xpCount, nextLevelXp, prevLevelXp, completeChallenges,
-      addXp, completeNewChallenge, isLevelUpCardOpen, closeLevelUpCard
+      addXp, completeNewChallenge, isLevelUpCardOpen, closeLevelUpCard, isLoggedIn, loginUser, isLoaded
     }}>
       {children}
     </UserDataContext.Provider>
