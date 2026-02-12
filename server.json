@@ -4,6 +4,7 @@
     "xpCount": 0,
     "nextLevelXp": 600,
     "prevLevelXp": 0,
-    "completeChallenges": 0
+    "completeChallenges": 0,
+    "isLoggedIn": false
   }
 }
