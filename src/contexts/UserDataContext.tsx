@@ -20,7 +20,9 @@ export interface UserDataContextData extends UserDataProps {
   // NÃO NECESSITAM DA API
   closeLevelUpCard: () => void,
   isLevelUpCardOpen: boolean,
+  isLoggedIn: boolean,
   isLoaded: boolean,
+  username: string,
 }
 
 // Criando contexto do UserData de acordo com a tipagem definida e herdada
@@ -38,11 +40,12 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
   const [nextLevelXp, setNextLevelXp] = useState(600)
   const [prevLevelXp, setPrevLevelXp] = useState(0)
   const [completeChallenges, setCompleteChallenges] = useState(0)
-  const [isLoggedIn, setLoggedIn] = useState(false)
-
+  
   // LOCAL:
   const [isLevelUpCardOpen, setIsLevelUpCardOpen] = useState(false)
+  const [isLoggedIn, setLoggedIn] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [username, setUsername] = useState("")
 
   // Criando efeito colateral para cada loading da aplicação
   useEffect(() => {
@@ -53,6 +56,12 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
       // Requisitando dados da API
       const data = await getUserData()
 
+      // Recebendo informações de login do localStorage
+      const savedLogin = localStorage.getItem("moveit:isLoggedIn")
+
+      // Recebendo nome do localStorage
+      const savedName = localStorage.getItem("moveit:userName")
+
       // Validando os dados
       if (data) {
 
@@ -62,6 +71,14 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
         setNextLevelXp(data.nextLevelXp)
         setPrevLevelXp(data.prevLevelXp)
         setCompleteChallenges(data.completeChallenges)
+
+        if(savedLogin === "true"){
+          setLoggedIn(true)
+        }
+
+        if(savedName) {
+          setUsername(savedName)
+        }
 
         // Aplica delay para aguardar o carregamneto dos estados antes de envia-los para o contexto 
         setTimeout(() => {
@@ -120,13 +137,16 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
   const addXp = async () => setXpCount(prevXpCount => prevXpCount + 400)
   const completeNewChallenge = async () => setCompleteChallenges(prevChallenge => prevChallenge + 1)
   const closeLevelUpCard = () => setIsLevelUpCardOpen(false)
-  const loginUser = () => setLoggedIn(true)
+  const loginUser = () => {
+    setLoggedIn(true) // Faz login do User
+    localStorage.setItem("moveit:isLoggedIn", "true") // Salvando login do User no navegador
+  }
 
   // Retornando componente de contexto
   return (
     <UserDataContext.Provider value={{
       level, xpCount, nextLevelXp, prevLevelXp, completeChallenges,
-      addXp, completeNewChallenge, isLevelUpCardOpen, closeLevelUpCard, isLoggedIn, loginUser, isLoaded
+      addXp, completeNewChallenge, isLevelUpCardOpen, closeLevelUpCard, isLoggedIn, loginUser, isLoaded, username
     }}>
       {children}
     </UserDataContext.Provider>
