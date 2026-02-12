@@ -13,7 +13,7 @@ import { UserDataContext } from "../../contexts/UserDataContext"
 export function Profile(){
 
   // Recebendo contexto do User a partir do JSON-SERVER
-  const { level, xpCount, username } = useContext(UserDataContext)
+  const { level, xpCount, username, resetUser } = useContext(UserDataContext)
   
   // Retornando estrutura do componente
   return(
@@ -25,6 +25,9 @@ export function Profile(){
           <img src={ levelIcon }/>
           <span>Level {level} | {xpCount} xp</span>
         </div>
+        <button type="button" onClick={ resetUser }>
+        Sair e Resetar Progresso
+      </button>
       </div>
     </div>
   )
