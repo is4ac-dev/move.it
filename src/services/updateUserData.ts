@@ -4,6 +4,7 @@ export interface UserData {
   level: number,
   xpCount: number,
   nextLevelXp: number,
+  prevLevelXp: number,
   completeChallenges: number
 }
 
