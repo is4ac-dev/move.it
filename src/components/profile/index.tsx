@@ -7,7 +7,7 @@ import { useContext } from "react"
 
 export function Profile(){
 
-  const { level } = useContext(UserDataContext)
+  const { level, xpCount } = useContext(UserDataContext)
   
   return(
     <div className="profile-card">
@@ -16,7 +16,7 @@ export function Profile(){
         <span className="profile-name">Isaac Monteiro</span>
         <div className="profile-level">
           <img src={ levelIcon }/>
-          <span>Level {level}</span>
+          <span>Level {level} | {xpCount} xp</span>
         </div>
       </div>
     </div>
