@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { UserDataContext } from "../../contexts/UserDataContext";
 
-export function calcPercent(){
+export function useCalcPercent(){
 
-  const { xpCount, nextLevelXp } = useContext(UserDataContext)
+  const { xpCount, nextLevelXp, prevLevelXp } = useContext(UserDataContext)
 
-  const percent = (xpCount / nextLevelXp) * 100
+  const percent = Math.trunc(((xpCount - prevLevelXp) * 100) / (nextLevelXp - prevLevelXp))
+
+  console.log(percent)
 
   return percent.toString()
 }
