@@ -7,8 +7,10 @@ import { updateUserData } from "../services/updateUserData"
 import type { UserData as UserDataProps } from "../services/updateUserData" 
 
 export interface UserDataContextData extends UserDataProps {
-  updateLevel: (value: number) => Promise<void>,
-  addXp: (amount: number) => Promise<void>,
+  updateLevel: () => Promise<void>,
+  addXp: () => Promise<void>,
+  updateNextLevelXp: () => Promise<void>,
+  updatePrevLevelXp: () => Promise<void>,
   completeNewChallenge: () => Promise<void>,
 }
 
@@ -17,6 +19,8 @@ export const UserDataContext = createContext<UserDataContextData>({} as UserData
 export function UserDataProvider({ children }: { children: ReactNode }) {
   const [level, setLevel] = useState(1)
   const [xpCount, setXpCount] = useState(0)
+  const [nextLevelXp, setNextLevelXp] = useState(600)
+  const [prevLevelXp, setPrevLevelXp] = useState(0)
   const [completeChallenges, setCompleteChallenges] = useState(0)
 
   const isLoaded = useRef(false)
@@ -27,6 +31,8 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
       if (data) {
         setLevel(data.level)
         setXpCount(data.xpCount)
+        setNextLevelXp(data.nextLevelXp)
+        setPrevLevelXp(data.prevLevelXp)
         setCompleteChallenges(data.completeChallenges)
         isLoaded.current = true
       }
@@ -35,19 +41,36 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    if (isLoaded.current) {
-      updateUserData({ level, xpCount, completeChallenges })
+    if(isLoaded.current) {
+      updateUserData({ level, xpCount, nextLevelXp, prevLevelXp, completeChallenges })
     }
-  }, [level, xpCount, completeChallenges])
+  }, [level, xpCount, nextLevelXp, prevLevelXp, completeChallenges])
 
-  const updateLevel = async (v: number) => setLevel(v)
-  const addXp = async (v: number) => setXpCount(p => p + v)
-  const completeNewChallenge = async () => setCompleteChallenges(p => p + 1)
+  const handleLevelUp = () => {
+
+    setPrevLevelXp(nextLevelXp)
+
+    setLevel(prevLevel => prevLevel + 1)
+
+    setNextLevelXp(prevNextLevel => prevNextLevel * 2)
+}
+
+useEffect(() => {
+  if (isLoaded.current && xpCount >= nextLevelXp) {
+    handleLevelUp()
+  }
+}, [xpCount, nextLevelXp])
+
+  const updateLevel = async () => setLevel(prevLevel => prevLevel + 1)
+  const updateNextLevelXp = async () => setNextLevelXp(prevXp => prevXp * 2)
+  const updatePrevLevelXp = async () => setPrevLevelXp(nextLevelXp)
+  const addXp = async () => setXpCount(prevXpCount => prevXpCount + 400)
+  const completeNewChallenge = async () => setCompleteChallenges(prevChallenge => prevChallenge + 1)
 
   return (
     <UserDataContext.Provider value={{
-      level, xpCount, completeChallenges,
-      updateLevel, addXp, completeNewChallenge
+      level, xpCount, nextLevelXp, prevLevelXp, completeChallenges,
+      updateLevel, addXp, updateNextLevelXp, updatePrevLevelXp, completeNewChallenge
     }}>
       {children}
     </UserDataContext.Provider>
