@@ -19,6 +19,7 @@ export interface UserDataContextData extends UserDataProps {
 
   // NÃO NECESSITAM DA API
   closeLevelUpCard: () => void,
+  resetUser: () => void,
   isLevelUpCardOpen: boolean,
   isLoggedIn: boolean,
   isLoaded: boolean,
@@ -119,7 +120,9 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
 
     // Permite exibição do card de LevelUp
     setIsLevelUpCardOpen(true)
-}
+  }
+
+
 
   // Criando efeito colateral para aplicar LevelUp
   // Aplica em mudanças de estado do Xp e do Xp necessário para LevelUp
@@ -141,12 +144,40 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
     setLoggedIn(true) // Faz login do User
     localStorage.setItem("moveit:isLoggedIn", "true") // Salvando login do User no navegador
   }
+  // Criando função para resetar cadastro
+  const resetUser = () => {
+
+    // Confirmando reset
+    const response = confirm("Tem certeza que deseja sair?")
+
+    // Se confirmação for atendida
+    if(response){
+
+      // Limpando dados do localStorage
+      localStorage.removeItem("moveit:isLoggedIn")
+      localStorage.removeItem("moveit:userName")
+
+      // Resetando o estado do login e do nome
+      setLoggedIn(false)
+      setUsername("")
+
+      // Resetando progresso para Level 1
+      setLevel(1)
+      setXpCount(0)
+      setNextLevelXp(600)
+      setPrevLevelXp(0)
+      setCompleteChallenges(0)
+
+      // Recarregando página
+      window.location.reload()
+    }
+  }
 
   // Retornando componente de contexto
   return (
     <UserDataContext.Provider value={{
       level, xpCount, nextLevelXp, prevLevelXp, completeChallenges,
-      addXp, completeNewChallenge, isLevelUpCardOpen, closeLevelUpCard, isLoggedIn, loginUser, isLoaded, username
+      addXp, completeNewChallenge, isLevelUpCardOpen, closeLevelUpCard, isLoggedIn, loginUser, isLoaded, username, resetUser
     }}>
       {children}
     </UserDataContext.Provider>
