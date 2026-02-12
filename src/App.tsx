@@ -5,6 +5,7 @@ import { Profile } from "./components/profile/index.tsx"
 import { Challenges } from "./components/challenges/index.tsx"
 import { Timer } from "./components/timer/index.tsx"
 import { Button } from "./components/button/index.tsx"
+import { LevelUpCard } from "./components/levelupcard/index.tsx"
 
 // Importando Componentes de Contexto
 import { PomoProvider } from "./contexts/PomoContext"
@@ -29,6 +30,7 @@ export function App() {
             <Card />
           </main>
         </div>
+        <LevelUpCard/>
       </PomoProvider>
     </UserDataProvider>
   )
