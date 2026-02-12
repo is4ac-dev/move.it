@@ -7,7 +7,5 @@ export function useCalcPercent(){
 
   const percent = Math.trunc(((xpCount - prevLevelXp) * 100) / (nextLevelXp - prevLevelXp))
 
-  console.log(percent)
-
   return percent.toString()
 }
