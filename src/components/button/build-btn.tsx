@@ -2,11 +2,11 @@
 import { useContext } from "react"
 import { PomoContext } from "../../contexts/PomoContext"
 
-// Recebendo contexto do Pomodoro
-const { isWorking, setIsWorking } = useContext(PomoContext)
-
 // Button para iniciar ciclo Pomodoro
 export function BuildStartBtn(){
+
+  // Recebendo contexto do Pomodoro
+  const { isWorking, setIsWorking } = useContext(PomoContext)
 
   // Retornando estrutura do componente de Button
   return(
@@ -30,6 +30,9 @@ export function BuildStartBtn(){
 
 // Button para encerrar ciclo Pomodoro
 export function BuildCancelBtn(){
+
+  // Recebendo contexto do Pomodoro
+  const { isWorking, setIsWorking } = useContext(PomoContext)
 
   // Retornando estrutura do componente de Button
   return(

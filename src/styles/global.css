@@ -1,5 +1,4 @@
 :root {
-  /* CORES */
   --blue01: #5965E0;
   --blue02: #4953B8;
   --green : #4CD62B;
@@ -10,7 +9,6 @@
   --backgr: #F2F3F5;
   --white : #FFFFFF;
 
-  /* FONTES */
   --timer: 600 7.5rem/6.25rem "Rajdhani", sans-serif;
   --title: 600 1.875rem/2.5rem "Inter", sans-serif;
   --fixed-xp: 400 0.875rem/100% "Inter", sans-serif;
@@ -25,7 +23,6 @@
   --btn-text: 600 1.125rem/100% "Inter", sans-serif;
 }
 
-/* RESET NAS CONFIGS PADRÕES DE NAVEGADORES */
 * {
   margin: 0;
   padding: 0;

@@ -8,7 +8,7 @@ import { PomoContext } from "../../contexts/PomoContext"
 // Importando estados do Button
 import { BuildStartBtn, BuildCancelBtn, BuildFinishedBtn } from "./build-btn"
 
-// Criando componente para botão principal
+// Criando componente para Button
 export function Button(){
 
   // Recebendo contexto do Pomodoro
