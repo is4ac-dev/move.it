@@ -3,17 +3,17 @@ import "./styles.css"
 import { UserDataContext } from "../../contexts/UserDataContext"
 import { useContext } from "react"
 
-import { calcPercent } from "./progressPercentCalc"
+import { useCalcPercent } from "./progressPercentCalc"
 
 export function ProgressBar(){
 
-  const { xpCount, nextLevelXp } = useContext(UserDataContext)
+  const { prevLevelXp, nextLevelXp } = useContext(UserDataContext)
 
-  const percentProgress = calcPercent()
+  const percentProgress = useCalcPercent()
 
   return (
     <div className="progress-container">
-      <span className="fixed-xp">{ xpCount } xp</span>
+      <span className="fixed-xp">{ prevLevelXp } xp</span>
       <div className="back-bar">
         <div className="fill-bar" style={{width: `${percentProgress}%`}}>
         </div>
