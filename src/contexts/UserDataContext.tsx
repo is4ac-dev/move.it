@@ -105,17 +105,17 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
     setIsLevelUpCardOpen(true)
 }
 
-// Criando efeito colateral para aplicar LevelUp
-// Aplica em mudanças de estado do Xp e do Xp necessário para LevelUp
-useEffect(() => {
+  // Criando efeito colateral para aplicar LevelUp
+  // Aplica em mudanças de estado do Xp e do Xp necessário para LevelUp
+  useEffect(() => {
 
-  // Validando se carregamento inicial foi concluído, se User atingiu o xp necessário para LevelUp e se o LevelUpCard está fechado
-  if (isLoaded && xpCount >= nextLevelXp && !isLevelUpCardOpen) {
+    // Validando se carregamento inicial foi concluído, se User atingiu o xp necessário para LevelUp e se o LevelUpCard está fechado
+    if (isLoaded && xpCount >= nextLevelXp && !isLevelUpCardOpen) {
 
-    // Aplicando LevelUp no User
-    handleLevelUp()
-  }
-}, [xpCount, nextLevelXp, isLevelUpCardOpen, isLoaded])
+      // Aplicando LevelUp no User
+      handleLevelUp()
+    }
+  }, [xpCount, nextLevelXp, isLevelUpCardOpen, isLoaded])
 
   // Definindo funções para mudança de estado
   const addXp = async () => setXpCount(prevXpCount => prevXpCount + 400)
