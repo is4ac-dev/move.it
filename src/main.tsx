@@ -6,9 +6,14 @@ import { App } from './App.tsx'
 // Importando CSS Global
 import "./styles/global.css"
 
+// Importando contexto do UserData
+import { UserDataProvider } from "./contexts/UserDataContext.tsx"
+
 // Criação da estrutura HTML
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <App />
+    <UserDataProvider>
+      <App/>
+    </UserDataProvider>
   </StrictMode>,
 )
