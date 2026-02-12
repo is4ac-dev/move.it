@@ -22,7 +22,7 @@ export function BuildDefaultTimer(){
 
 export function BuildFlexTimer(){
   
-  const [timer, setTimer] = useState(5)
+  const [timer, setTimer] = useState(1500)
 
   const {isWorking, setIsWorking, isFinished, setIsFinished} = useContext(PomoContext)
 
