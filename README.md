@@ -29,7 +29,7 @@ npm install
 ```
 npm run server
 ```
-3. **Inicie a Aplicação**
+4. **Inicie a Aplicação**
 ```
 npm run dev
 ```
