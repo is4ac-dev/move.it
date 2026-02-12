@@ -1,5 +1,5 @@
 // Importando funções e Hooks para gestão de estado e contexto
-import { createContext, useEffect, useState, useRef } from "react"
+import { createContext, useEffect, useState } from "react"
 import type { ReactNode } from "react"
 
 // Importando serviços da API
@@ -20,7 +20,7 @@ export interface UserDataContextData extends UserDataProps {
   completeNewChallenge: () => Promise<void>,
 
   // NÃO NECESSITAM DA API
-  isLevelUpCard: boolean,
+  isLevelUpCardOpen: boolean,
   closeLevelUpCard: () => void,
 
 }
@@ -42,10 +42,8 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
   const [completeChallenges, setCompleteChallenges] = useState(0)
 
   // LOCAL:
-  const [isLevelUpCard, setCloseLevelUpCard] = useState(false)
-
-  // Criando flag para carregamento inicial da API
-  const isLoaded = useRef(false)
+  const [isLevelUpCardOpen, setIsLevelUpCardOpen] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   // Criando efeito colateral para cada loading da aplicação
   useEffect(() => {
@@ -66,8 +64,12 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
         setPrevLevelXp(data.prevLevelXp)
         setCompleteChallenges(data.completeChallenges)
 
-        // Definindo flag de carregamento concluído
-        isLoaded.current = true
+        // Aplica delay para aguardar o carregamneto dos estados antes de envia-los para o contexto 
+        setTimeout(() => {
+
+          // Carregamento concluído
+          setIsLoaded(true)
+        }, 100)
       }
     }
 
@@ -76,16 +78,16 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
   }, [])
 
   // Criando efeito colateral para atualizar dados da API
-  // Aplica em mudanças de estado do xp ou do level
+  // Aplica no carregamento da página ou em mudanças de estado do xp ou do level
   useEffect(() => {
 
     // Validando se carregamento inicial foi concluído
-    if(isLoaded.current) {
+    if(isLoaded) {
 
       // Atualizando dados da API
       updateUserData({ level, xpCount, nextLevelXp, prevLevelXp, completeChallenges })
     }
-  }, [xpCount, level])
+  }, [xpCount, level, isLoaded])
 
   // Criando função para LevelUp
   const handleLevelUp = () => {
@@ -100,31 +102,31 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
     setNextLevelXp(prevNextLevel => prevNextLevel * 2)
 
     // Permite exibição do card de LevelUp
-    setCloseLevelUpCard(true)
+    setIsLevelUpCardOpen(true)
 }
 
 // Criando efeito colateral para aplicar LevelUp
 // Aplica em mudanças de estado do Xp e do Xp necessário para LevelUp
 useEffect(() => {
 
-  // Validando se carregamento inicial foi concluído e se User atingiu o xp necessário para LevelUp
-  if (isLoaded.current && xpCount >= nextLevelXp) {
+  // Validando se carregamento inicial foi concluído, se User atingiu o xp necessário para LevelUp e se o LevelUpCard está fechado
+  if (isLoaded && xpCount >= nextLevelXp && !isLevelUpCardOpen) {
 
     // Aplicando LevelUp no User
     handleLevelUp()
   }
-}, [xpCount, nextLevelXp])
+}, [xpCount, nextLevelXp, isLevelUpCardOpen, isLoaded])
 
-// Definindo funções para mudança de estado
+  // Definindo funções para mudança de estado
   const addXp = async () => setXpCount(prevXpCount => prevXpCount + 400)
   const completeNewChallenge = async () => setCompleteChallenges(prevChallenge => prevChallenge + 1)
-  const closeLevelUpCard = () => setCloseLevelUpCard(false)
+  const closeLevelUpCard = () => setIsLevelUpCardOpen(false)
 
   // Retornando componente de contexto
   return (
     <UserDataContext.Provider value={{
       level, xpCount, nextLevelXp, prevLevelXp, completeChallenges,
-      addXp, completeNewChallenge, isLevelUpCard, closeLevelUpCard
+      addXp, completeNewChallenge, isLevelUpCardOpen, closeLevelUpCard
     }}>
       {children}
     </UserDataContext.Provider>
