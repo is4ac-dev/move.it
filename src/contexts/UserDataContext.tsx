@@ -12,11 +12,17 @@ import type { UserData as UserDataProps } from "../services/updateUserData"
 // Definindo interface herdando tipagem da API e acrescentando métodos para manipulação do contexto
 export interface UserDataContextData extends UserDataProps {
 
+  // SINCRONIZADOS COM API
   // Método para incrementar xp do User
   addXp: () => Promise<void>,
 
   // Método para incrementar o contador de challenges
   completeNewChallenge: () => Promise<void>,
+
+  // NÃO NECESSITAM DA API
+  isLevelUpCard: boolean,
+  closeLevelUpCard: () => void,
+
 }
 
 // Criando contexto do UserData de acordo com a tipagem definida e herdada
@@ -26,12 +32,17 @@ export const UserDataContext = createContext<UserDataContextData>({} as UserData
 // Children: Propriedade que realiza tipagem de todos os componentes envolvidos pelo PomoProvider como um Nó do React
 export function UserDataProvider({ children }: { children: ReactNode }) {
 
-  // Definindo estados iniciais e suas funções de alteração
+  //Definindo estados iniciais e suas funções de alteração
+
+  // API: 
   const [level, setLevel] = useState(1)
   const [xpCount, setXpCount] = useState(0)
   const [nextLevelXp, setNextLevelXp] = useState(600)
   const [prevLevelXp, setPrevLevelXp] = useState(0)
   const [completeChallenges, setCompleteChallenges] = useState(0)
+
+  // LOCAL:
+  const [isLevelUpCard, setCloseLevelUpCard] = useState(false)
 
   // Criando flag para carregamento inicial da API
   const isLoaded = useRef(false)
@@ -87,6 +98,9 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
 
     // Definindo o end range da barra de progresso
     setNextLevelXp(prevNextLevel => prevNextLevel * 2)
+
+    // Permite exibição do card de LevelUp
+    setCloseLevelUpCard(true)
 }
 
 // Criando efeito colateral para aplicar LevelUp
@@ -104,12 +118,13 @@ useEffect(() => {
 // Definindo funções para mudança de estado
   const addXp = async () => setXpCount(prevXpCount => prevXpCount + 400)
   const completeNewChallenge = async () => setCompleteChallenges(prevChallenge => prevChallenge + 1)
+  const closeLevelUpCard = () => setCloseLevelUpCard(false)
 
   // Retornando componente de contexto
   return (
     <UserDataContext.Provider value={{
       level, xpCount, nextLevelXp, prevLevelXp, completeChallenges,
-      addXp, completeNewChallenge
+      addXp, completeNewChallenge, isLevelUpCard, closeLevelUpCard
     }}>
       {children}
     </UserDataContext.Provider>
