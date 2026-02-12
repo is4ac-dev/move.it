@@ -1,12 +1,17 @@
+// Importando contexto do Pomodoro
 import { useContext } from "react"
 import { PomoContext } from "../../contexts/PomoContext"
 
+// Recebendo contexto do Pomodoro
+const { isWorking, setIsWorking } = useContext(PomoContext)
 
+// Button para iniciar ciclo Pomodoro
 export function BuildStartBtn(){
 
-  const { isWorking, setIsWorking } = useContext(PomoContext)
-
+  // Retornando estrutura do componente de Button
   return(
+
+    // FUNCIONALIDADE: alterna o estado do contexto do Pomodoro para: EM FUNCIONAMENTO
     <button className="start-btn" onClick={() => setIsWorking(!isWorking)}>
       <span>Iniciar um ciclo</span>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,11 +28,13 @@ export function BuildStartBtn(){
   )
 }
 
+// Button para encerrar ciclo Pomodoro
 export function BuildCancelBtn(){
 
-  const { isWorking, setIsWorking } = useContext(PomoContext)
-
+  // Retornando estrutura do componente de Button
   return(
+
+    // FUNCIONALIDADE: alterna o estado do contexto do Pomodoro para: FUNCIONAMENTO INTERROMPIDO
     <button className="cancel-btn" onClick={() => setIsWorking(!isWorking)}>
       <span>Abandonar ciclo</span>
       <svg width="24" height="24" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,8 +44,10 @@ export function BuildCancelBtn(){
   )
 }
 
+// Button de ciclo Pomodoro finalizado
 export function BuildFinishedBtn(){
 
+  // Retornando estrutura do componente de Button
   return(
     <button className="finished-btn">
       <span>Ciclo encerrado</span>

@@ -7,7 +7,6 @@
   border-radius: 1rem;
 }
 
-/* SE FOR BOTÃO DE COMEÇAR, APLICA ESTILIZAÇÃO */
 .button-container:has(.start-btn){
   background-color: var(--blue01);
 
@@ -21,7 +20,6 @@
   background-color: var(--blue02);
 }
 
-/* SE FOR BOTÃO DE CANCELAR, APLICA ESTILIZAÇÃO */
 .button-container:has(.cancel-btn){
   background-color: var(--white);
 
@@ -66,7 +64,6 @@
   }
 }
 
-/* AJUSTANDO ESTILIZAÇÃO DO BUTTON */
 .button-container button {
   background: transparent;
   border: none;
@@ -81,5 +78,4 @@
   gap: 0.5rem;
 
   padding: 1.5rem 0;
-  
 }
