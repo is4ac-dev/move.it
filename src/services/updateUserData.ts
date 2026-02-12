@@ -31,7 +31,5 @@ export async function updateUserData(data: Partial<UserData>){
     
   } catch (error) {
     console.log(error)
-    alert("Erro ao atualizar banco de dados!")
   }
-
 }
