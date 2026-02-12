@@ -16,14 +16,13 @@
   height: 4px;
 
   border-radius: 3px;
+
 }
 
 .fill-bar {
   background-color: var(--green);
   width: 0;
   height: 4px;
-
-  justify-content: flex-start;
 
   border-radius: 3px;
 }
@@ -32,5 +31,9 @@
 .fixed-xp {
   font: var(--fixed-xp);
   color: var(--text);
+}
 
+.xp-count {
+  font: var(--fixed-xp);
+  color: var(--text);
 }
