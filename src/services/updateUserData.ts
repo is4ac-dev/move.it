@@ -8,7 +8,6 @@ export interface UserData {
   nextLevelXp: number,
   prevLevelXp: number,
   completeChallenges: number,
-  isLoggedIn: boolean,
 }
 
 // Criando função para atualizar dados da API
